@@ -15,7 +15,7 @@ $ npm install --global gulp-cli
 
 1. Clone this Repository
 ```
-$ git clone git@github.com:deren2525/gulp4-pug-scss-ts-template.git
+$ git clone git@github.com:abhishek-deshmukh/gulp4-pug-scss-ts-template.git
 ```
 
 2. Start developing.
@@ -23,5 +23,12 @@ $ git clone git@github.com:deren2525/gulp4-pug-scss-ts-template.git
 ```
 $ cd gulp4-pug-scss-ts-template
 $ npm install
-$ gulp
+$ npm run serve
+```
+
+## Build deployables
+
+0. Build them
+```
+$ npm run build
 ```
