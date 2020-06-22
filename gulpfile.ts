@@ -14,6 +14,7 @@ const prettify = require('gulp-prettify');
 const htmlhint = require('gulp-htmlhint');
 const min_html = require('gulp-htmlmin');
 const min_css = require('gulp-css');
+const uglify = require('gulp-uglify');
 const PUBLIC_PATH = 'dist/pretty';
 
 const PATHS = {
@@ -131,7 +132,7 @@ function ts() {
   return src(PATHS.scripts.src)
     .pipe(
       typescript({
-        target: 'ES6',
+        target: 'ES3',
       }),
     )
     .js.pipe(dest(PATHS.scripts.dest));
@@ -139,7 +140,7 @@ function ts() {
 
 // javascript
 function js() {
-  return src(MINI_PATHS.scripts.src).pipe(dest(MINI_PATHS.scripts.dest));
+  return src(MINI_PATHS.scripts.src).pipe(uglify()).pipe(dest(MINI_PATHS.scripts.dest));
 }
 
 // static
