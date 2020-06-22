@@ -29,6 +29,10 @@ const PATHS = {
     src: './src/typescript/**/*.ts',
     dest: './dist/pretty/js',
   },
+  statics: {
+    src: './src/static/**',
+    dest: './dist/pretty/static'
+  }
 };
 const MINI_PATHS = {
   html: {
@@ -43,6 +47,10 @@ const MINI_PATHS = {
     src: PATHS.scripts.dest + '/**/*.js',
     dest: './dist/mini/js',
   },
+  statics: {
+    src: PATHS.statics.dest + "/**",
+    dest: './dist/mini/static'
+  }
 };
 
 // methods
@@ -134,6 +142,16 @@ function js() {
   return src(MINI_PATHS.scripts.src).pipe(dest(MINI_PATHS.scripts.dest));
 }
 
+// static
+function staticFiles() {
+  return src(PATHS.statics.src).pipe(dest(PATHS.statics.dest));
+}
+
+// static mini
+function staticFilesMini() {
+  return src(MINI_PATHS.statics.src).pipe(dest(MINI_PATHS.statics.dest));
+}
+
 // server
 const browserSyncOption = {
   open: false,
@@ -168,11 +186,11 @@ function watchFiles(done) {
 
 // commands
 exports.default = series(
-  parallel(styles, pugFiles, ts),
+  parallel(styles, pugFiles, ts, staticFiles),
   series(browsersync, watchFiles),
 );
 
 exports.build = series(
-  parallel(styles, pugFiles, ts),
-  parallel(cssStyles, htmlFiles, js),
+  parallel(styles, pugFiles, ts, staticFiles),
+  parallel(cssStyles, htmlFiles, js, staticFilesMini),
 );
