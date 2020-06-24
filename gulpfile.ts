@@ -23,7 +23,7 @@ const PATHS = {
     dest: './dist/pretty',
   },
   styles: {
-    src: './src/scss/**/*.scss',
+    src: './src/scss/**/*.*css',
     dest: './dist/pretty/css',
   },
   scripts: {
