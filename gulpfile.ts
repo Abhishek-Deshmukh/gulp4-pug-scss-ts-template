@@ -15,6 +15,7 @@ const htmlhint = require('gulp-htmlhint');
 const min_html = require('gulp-htmlmin');
 const min_css = require('gulp-css');
 const uglify = require('gulp-uglify');
+const uncss = require('gulp-uncss');
 const PUBLIC_PATH = 'dist/pretty';
 
 const PATHS = {
@@ -123,6 +124,9 @@ function styles() {
 // css
 function cssStyles() {
   return src(MINI_PATHS.styles.src)
+    .pipe(uncss({
+      html: MINI_PATHS.html.src
+    }))
     .pipe(min_css())
     .pipe(dest(MINI_PATHS.styles.dest));
 }
